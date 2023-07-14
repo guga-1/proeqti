@@ -1,0 +1,34 @@
+
+local function generateRandomNumber(min, max)
+  return math.random(min, max)
+end
+
+
+math.randomseed(os.time())
+
+print("Welcome to the Guessing Game!")
+local secretNumber = generateRandomNumber(1, 100)
+local guessesTaken = 0
+local maxGuesses = 10
+local gameOver = false
+
+while not gameOver do
+  print("Take a guess: ")
+  local guess = tonumber(io.read())
+  
+  if guess == secretNumber then
+    print("Congratulations! You guessed the secret number!")
+    gameOver = true
+  elseif guess < secretNumber then
+    print("Too low! Guess higher.")
+  else
+    print("Too high! Guess lower.")
+  end
+
+  guessesTaken = guessesTaken + 1
+
+  if guessesTaken >= maxGuesses then
+    print("Game over! You ran out of guesses.")
+    gameOver = true
+  end
+end
